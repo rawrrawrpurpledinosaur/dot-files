@@ -18,4 +18,5 @@ vim.api.nvim_set_keymap('n', '<C-a>', 'ggVG', opts)
 -- Save buffer 
 vim.api.nvim_set_keymap('n', '<C-s>', ':w<CR>', opts)
 
-
+-- Undo 
+vim.api.nvim_set_keymap('i', '<C-z>', '<Esc>ui', opts)

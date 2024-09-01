@@ -4,3 +4,6 @@
 
 -- Wrap lines
 vim.opt.wrap = true
+
+-- Share system clipboard 
+vim.opt.clipboard = 'unnamedplus'
