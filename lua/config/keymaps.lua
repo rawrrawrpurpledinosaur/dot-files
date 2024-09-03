@@ -4,19 +4,30 @@
 
 local opts = { noremap = true, silent = true }
 
--- Overrdide tab keymap and use it for copilot completion
-vim.api.nvim_set_keymap('i', '<Tab>', 'copilot#Accept("<C-J>")', { expr = true})
+-- Control [Y]es to accept copilot suggestion
+vim.keymap.set("i", "<C-Y>", 'copilot#Accept("\\<CR>")', {
+  expr = true,
+  replace_keycodes = false,
+})
+vim.g.copilot_no_tab_map = true
 
--- Return to normal mode after jj or kk or jk
-vim.api.nvim_set_keymap('i', 'jj', '<Esc>', opts)
-vim.api.nvim_set_keymap('i', 'kk', '<Esc>', opts)
-vim.api.nvim_set_keymap('i', 'jk', '<Esc>', opts)
+-- Return to normal mode after jj or kk
+vim.keymap.set("i", "jj", "<Esc>")
+vim.keymap.set("i", "kk", "<Esc>")
 
 -- Select all
-vim.api.nvim_set_keymap('n', '<C-a>', 'ggVG', opts)
+vim.keymap.set("n", "<C-a>", "ggVG")
 
--- Save buffer 
-vim.api.nvim_set_keymap('n', '<C-s>', ':w<CR>', opts)
+-- Save buffer
+vim.keymap.set("n", "<C-s>", ":w<CR>")
 
--- Undo 
-vim.api.nvim_set_keymap('i', '<C-z>', '<Esc>ui', opts)
+-- Undo in insert mode
+vim.keymap.set("i", "<C-z>", "<Esc>ui")
+
+-- Move visual selection up and down
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+
+-- Keep cursor centred when <C-d> or <C-u> is processed
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
+vim.keymap.set("n", "<C-u>", "<C-u>zz")
